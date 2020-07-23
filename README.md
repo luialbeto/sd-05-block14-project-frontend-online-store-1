@@ -4,6 +4,14 @@ Você já usa o GitHub diariamente para desenvolver os exercícios, certo? Agora
 
 Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu projeto a partir deste repositório, utilizando uma branch específica e um _Pull Request_ para colocar seus códigos.
 
+### Entrega
+
+  - Projeto em grupo.
+
+  - Serão quatro dias de de projeto.
+  
+  - O projeto tem até a seguinte data: `05/07/2020 - 14:00h`. Para ser entregue a avaliação final.
+
 ## O que deverá ser desenvolvido
 
 Neste projeto você criará uma versão simplificada, sem persistência no banco de dados, de uma loja online, desenvolvendo em grupo suas funcionalidades de acordo com demandas definidas em um quadro _Kanban_, em um cenário mais próximo ao do mercado de trabalho. A partir dessas demandas, teremos uma aplicação onde os usuários poderão:
