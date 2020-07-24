@@ -1,5 +1,5 @@
 export async function getCategories() {
-  // implement here
+  // implement here first commit
 }
 
 export async function getProductsFromCategoryAndQuery(categoryId, query) {
