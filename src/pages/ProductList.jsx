@@ -1,6 +1,6 @@
 import React from 'react';
 
-import * as Api from '../services/api';
+import * as api from '../services/api';
 
 class ProductList extends React.Component {
   constructor(props) {
@@ -10,9 +10,9 @@ class ProductList extends React.Component {
       query: '',
     };
   }
-
+  
   componentDidMount() {
-    Api.getProductsFromCategoryAndQuery('', 'porta')
+    api.getProductsFromCategoryAndQuery('', 'computador')
       .then((data) => {
         this.setState({
           categoryId: data.results[0].title,
@@ -23,7 +23,14 @@ class ProductList extends React.Component {
 
   render() {
     return (
-      <div>{this.state.categoryId}</div>
+      <div>
+        <form>
+          <h1 data-testid="home-initial-message">
+          Digite algum termo de pesquisa ou escolha uma categoria.
+          </h1>
+          <input type="text" name="textInput" />
+        </form>
+      </div>
     );
   }
 }
