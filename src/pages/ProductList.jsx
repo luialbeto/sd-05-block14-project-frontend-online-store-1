@@ -24,12 +24,9 @@ class ProductList extends React.Component {
   render() {
     return (
       <div>
-        <form>
-          <h1 data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-          </h1>
-          <input type="text" name="textInput" />
-        </form>
+        <h1 data-testid="home-initial-message">
+          Digite algum termo de pesquisa ou escolha uma categoria
+        </h1>
       </div>
     );
   }
