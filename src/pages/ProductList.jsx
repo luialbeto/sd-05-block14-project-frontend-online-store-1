@@ -10,7 +10,7 @@ class ProductList extends React.Component {
       query: '',
     };
   }
-  
+
   componentDidMount() {
     api.getProductsFromCategoryAndQuery('', 'computador')
       .then((data) => {
