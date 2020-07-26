@@ -1,0 +1,1 @@
+// Componente para display de UM produto (um card) pra ser mapeado dentro da página ProductList

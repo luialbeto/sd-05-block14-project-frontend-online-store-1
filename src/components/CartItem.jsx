@@ -1,0 +1,1 @@
+// Componente para a página ShoppingCart que mapeia cada item adicionado ao carrinho

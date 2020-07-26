@@ -1,0 +1,1 @@
+// Componente da lateral esquerda que contém as categorias de compra (com radio buttons)
