@@ -1,0 +1,1 @@
+// Componente de barra de buscas pra página inicial ProductList
