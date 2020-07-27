@@ -6,27 +6,30 @@ class CategoryList extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      categories: []
-    };
+    this.state = { categories: [] };
   }
 
   componentDidMount() {
     api.getCategories().then((category) => {
-      this.setState({
-        categories: category
-      });
+      this.setState({ categories: category });
     });
   }
 
   render() {
+    const allCategories = this.state.categories;
     return (
-      <section>
-        {this.state.categories.map((category) => (
-          <div data-testid="category">
-            {category.name};
-          </div>
-        ))};
+      <section className="categories-container">
+        {allCategories.map((category) => (
+          <form>
+            <input
+              type="checkbox"
+              id="categories-list"
+              name="categories-list"
+              data-testid="category"
+            />
+            <label htmlFor="categories-list">{category.name}</label>
+          </form>
+        ))}
       </section>
     );
   }
