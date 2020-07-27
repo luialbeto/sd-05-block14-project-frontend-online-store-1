@@ -10,9 +10,10 @@ class ProductList extends React.Component {
       categoryId: '',
       query: '',
     };
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick = async (batatinha) => {
+  async handleClick(batatinha) {
     await api.getProductsFromCategoryAndQuery(this.state.categoryId, batatinha)
       .then((data) => {
         sessionStorage.setItem('items', JSON.stringify(data.results));

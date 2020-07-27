@@ -26,7 +26,7 @@ class CategoryList extends React.Component {
               name="categories-list"
               data-testid="category"
             />
-            <label htmlFor='categories-list'>{category.name}</label>
+            <label htmlFor="categories-list">{category.name}</label>
           </form>
         ))}
       </section>

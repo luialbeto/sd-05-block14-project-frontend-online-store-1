@@ -5,13 +5,14 @@ class SearchBar extends React.Component {
     super(props);
     this.state = {
       input: '',
-    }
+    };
+    this.handleChange = this.handleChange.bind(this);
   }
-  
-  handleChange = (event) => {
+
+  handleChange(event) {
     this.setState({
       input: event.target.value
-    })
+    });
   }
 
   render() {
