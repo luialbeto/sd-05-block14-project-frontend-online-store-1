@@ -1,6 +1,19 @@
 import React from 'react';
 
 class SearchBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      input: '',
+    }
+  }
+  
+  handleChange = (event) => {
+    this.setState({
+      input: event.target.value
+    })
+  }
+
   render() {
     return (
       <div className="search-bar">
@@ -8,8 +21,14 @@ class SearchBar extends React.Component {
           type="text"
           placeholder="Digite algum termo de pesquisa ou escolha uma categoria"
           data-testid="query-input"
-          onChange={this.props.onChange}
+          onChange={this.handleChange}
         />
+        <button
+          onClick={() => this.props.onClick(this.state.input)}
+          data-testid="query-button"
+        >
+          Pesquisar
+        </button>
       </div>
     );
   }
