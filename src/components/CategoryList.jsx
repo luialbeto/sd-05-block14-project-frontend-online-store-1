@@ -20,10 +20,9 @@ class CategoryList extends React.Component {
     return (
       <section className="categories-container">
         {allCategories.map((category) => (
-          <form>
+          <form key={category.id}>
             <input
               type="checkbox"
-              id="categories-list"
               name="categories-list"
               data-testid="category"
             />

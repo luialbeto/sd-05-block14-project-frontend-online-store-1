@@ -1,5 +1,5 @@
 import React from 'react';
-
+import SearchBar from '../components/SearchBar';
 import * as api from '../services/api';
 import ProductDisplay from '../components/ProductDisplay';
 
@@ -7,46 +7,31 @@ class ProductList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: [],
       categoryId: '',
       query: '',
     };
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  componentDidMount() {
-    const { categoryId, query } = this.state;
-    api.getProductsFromCategoryAndQuery(categoryId, query)
-      .then((response) => {
-        const productList = response.results.map((product) => {
-          const selectedProduct = {
-            id: product.id,
-            title: product.title,
-            price: product.price,
-            thumbnail: product.thumbnail,
-          };
-          return selectedProduct;
-        });
-        this.setState({ products: productList });
+  async handleClick(input) {
+    await api.getProductsFromCategoryAndQuery(this.state.categoryId, input)
+      .then((data) => {
+        sessionStorage.setItem('items', JSON.stringify(data.results));
       });
+    this.setState({ query: input });
   }
 
   render() {
-    const { products } = this.state;
     return (
-      <section>
-        <form>
-          <h1 data-testid="home-initial-message">
+      <section className="products-container">
+        <h1 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
-          </h1>
-          <input type="text" name="textInput" />
-        </form>
-        <ul>
-          {products.map((product) => (
-            <li>
-              <ProductDisplay product={product} />
-            </li>
-          ))}
-        </ul>
+        </h1>
+        <SearchBar onClick={this.handleClick} />
+        <div>
+          { sessionStorage.getItem('items') && JSON.parse(sessionStorage.getItem('items'))
+          .map((item) => <ProductDisplay batatinha={item.id} product={item} />) }
+        </div>
       </section>
     );
   }
