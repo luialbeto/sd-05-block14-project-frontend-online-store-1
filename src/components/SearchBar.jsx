@@ -8,6 +8,7 @@ class SearchBar extends React.Component {
           type="text"
           placeholder="Digite algum termo de pesquisa ou escolha uma categoria"
           data-testid="query-input"
+          onChange={this.props.onChange}
         />
       </div>
     );
