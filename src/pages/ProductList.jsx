@@ -1,7 +1,7 @@
 import React from 'react';
 import SearchBar from '../components/SearchBar';
 import * as api from '../services/api';
-import ProductDisplay from '../components/ProductDisplay';  
+import ProductDisplay from '../components/ProductDisplay';
 
 class ProductList extends React.Component {
   constructor(props) {
@@ -18,9 +18,7 @@ class ProductList extends React.Component {
       .then((data) => {
         sessionStorage.setItem('items', JSON.stringify(data.results));
       });
-    this.setState({
-      query: batatinha,
-    });
+    this.setState({query: batatinha});
   }
 
   render() {
@@ -31,8 +29,8 @@ class ProductList extends React.Component {
         </h1>
         <SearchBar onClick={this.handleClick} />
         <div>
-          { sessionStorage.getItem('items') && JSON.parse (sessionStorage.getItem('items'))
-          .map(item => <ProductDisplay batatinha={item.id}  product={item} />) }
+          { sessionStorage.getItem('items') && JSON.parse(sessionStorage.getItem('items'))
+          .map((item) => <ProductDisplay batatinha={item.id}  product={item} />) }
         </div>
       </section>
     );
