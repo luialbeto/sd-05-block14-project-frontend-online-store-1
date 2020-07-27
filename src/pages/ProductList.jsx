@@ -1,6 +1,8 @@
 import React from 'react';
-
+import SearchBar from '../components/SearchBar';
 import * as api from '../services/api';
+import ListItem from '../components/ListItem';
+
 
 class ProductList extends React.Component {
   constructor(props) {
@@ -14,22 +16,36 @@ class ProductList extends React.Component {
   componentDidMount() {
     api.getProductsFromCategoryAndQuery('', 'computador')
       .then((data) => {
-        this.setState({
-          categoryId: data.results[0].title,
-          query: data.results[0].id,
-        });
+      this.setState({
+        categoryId: data.results[0].title,
+        query: data.results[0].id,
       });
+    });
+  }
+
+  componentDidUpdate() {
+    api.getProductsFromCategoryAndQuery(this.state.categoryId, this.state.query)
+      .then((data) => {
+        localStorage.setItem('items', JSON.stringify(data.results))
+      })
+  }
+
+  handleChange = (event) => {
+    console.log(event.target.value)
+    this.setState({
+      query: event.target.value,
+    })
   }
 
   render() {
     return (
       <div>
-        <form>
-          <h1 data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-          </h1>
-          <input type="text" name="textInput" />
-        </form>
+      <SearchBar 
+        onChange={this.handleChange}
+      />
+      {JSON.parse(localStorage.getItem('items'))
+        .map(item => <div>{item.title}</div>)
+      }
       </div>
     );
   }
