@@ -1,54 +1,37 @@
 import React from 'react';
 import SearchBar from '../components/SearchBar';
 import * as api from '../services/api';
-import ListItem from '../components/ListItem';
-
+import ProductDisplay from '../components/ProductDisplay';
 
 class ProductList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: [],
       categoryId: '',
       query: '',
     };
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  componentDidMount() {
-    api.getProductsFromCategoryAndQuery('', 'computador')
+  async handleClick(input) {
+    await api.getProductsFromCategoryAndQuery(this.state.categoryId, input)
       .then((data) => {
-      this.setState({
-        categoryId: data.results[0].title,
-        query: data.results[0].id,
+        sessionStorage.setItem('items', JSON.stringify(data.results));
       });
-    });
+    this.setState({ query: input });
   }
-
-  componentDidUpdate() {
-    api.getProductsFromCategoryAndQuery(this.state.categoryId, this.state.query)
-      .then((data) => {
-        localStorage.setItem('items', JSON.stringify(data.results))
-      })
-  }
-
-  handleChange = (event) => {
-    console.log(event.target.value)
-    this.setState({
-      query: event.target.value,
-    })
-  }
-
   render() {
-    const { products } = this.state;
     return (
-      <div>
-      <SearchBar 
-        onChange={this.handleChange}
-      />
-      {JSON.parse(localStorage.getItem('items'))
-        .map(item => <div>{item.title}</div>)
-      }
-      </div>
+      <section className="products-container">
+        <h1 data-testid="home-initial-message">
+          Digite algum termo de pesquisa ou escolha uma categoria.
+        </h1>
+        <SearchBar onClick={this.handleClick} />
+        <div>
+          { sessionStorage.getItem('items') && JSON.parse(sessionStorage.getItem('items'))
+          .map((item) => <ProductDisplay id={item.id} product={item} />)}
+        </div>
+      </section>
     );
   }
 }
