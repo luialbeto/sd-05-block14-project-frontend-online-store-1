@@ -1,17 +1,25 @@
 import React from 'react';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import './App.css';
 import CategoryList from './components/CategoryList';
 import ProductList from './pages/ProductList';
 import ShoppingCart from './pages/ShoppingCart';
-
+import ProductDetails from './pages/ProductDetails';
 
 function App() {
   return (
-    <div className="App">
-      <CategoryList />
-      <ProductList />
-      <ShoppingCart />
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Switch>
+          <Route path="/product/:id" component={ProductDetails} />
+          <Route exact path="/">
+            <CategoryList />
+            <ProductList />
+            <ShoppingCart />
+          </Route>
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
 
