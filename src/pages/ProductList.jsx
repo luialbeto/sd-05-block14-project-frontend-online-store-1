@@ -13,12 +13,12 @@ class ProductList extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  async handleClick(batatinha) {
-    await api.getProductsFromCategoryAndQuery(this.state.categoryId, batatinha)
+  async handleClick(input) {
+    await api.getProductsFromCategoryAndQuery(this.state.categoryId, input)
       .then((data) => {
         sessionStorage.setItem('items', JSON.stringify(data.results));
       });
-    this.setState({query: batatinha});
+    this.setState({ query: input });
   }
 
   render() {
@@ -30,7 +30,7 @@ class ProductList extends React.Component {
         <SearchBar onClick={this.handleClick} />
         <div>
           { sessionStorage.getItem('items') && JSON.parse(sessionStorage.getItem('items'))
-          .map((item) => <ProductDisplay batatinha={item.id}  product={item} />) }
+          .map((item) => <ProductDisplay batatinha={item.id} product={item} />) }
         </div>
       </section>
     );
