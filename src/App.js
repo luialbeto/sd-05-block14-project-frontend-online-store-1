@@ -8,8 +8,8 @@ import ShoppingCart from './pages/ShoppingCart';
 function App() {
   return (
     <div className="App">
-      <ProductList />
       <CategoryList />
+      <ProductList />
       <ShoppingCart />
     </div>
   );

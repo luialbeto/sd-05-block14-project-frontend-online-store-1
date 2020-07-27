@@ -23,7 +23,7 @@ class ProductList extends React.Component {
 
   render() {
     return (
-      <section>
+      <section className="products-container">
         <h1 data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h1>

@@ -18,7 +18,7 @@ class CategoryList extends React.Component {
   render() {
     const allCategories = this.state.categories;
     return (
-      <section className="categories-container" >
+      <section className="categories-container">
         {allCategories.map((category) => (
           <form key={category.id}>
             <input

@@ -1,5 +1,6 @@
 .App {
-  text-align: center;
+  text-align: left;
+  display: flex;
 }
 
 .App-logo {
@@ -28,11 +29,7 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.categories-container, .products-container, .cart-container {
+  border: 1px solid black;
+  padding: 30px;
 }
