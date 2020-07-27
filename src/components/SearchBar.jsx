@@ -1,4 +1,3 @@
-// Componente de barra de buscas pra página inicial ProductList
 import React, { Component } from 'react'
 
 export default class SearchBar extends Component {

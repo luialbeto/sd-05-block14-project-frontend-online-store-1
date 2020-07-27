@@ -8,6 +8,7 @@ class ProductList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      products: [],
       categoryId: '',
       query: '',
     };
@@ -38,6 +39,7 @@ class ProductList extends React.Component {
   }
 
   render() {
+    const { products } = this.state;
     return (
       <div>
       <SearchBar 
