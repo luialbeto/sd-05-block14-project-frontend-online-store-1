@@ -4,7 +4,6 @@ import './App.css';
 import ProductList from './pages/ProductList';
 import ShoppingCart from './pages/ShoppingCart';
 import ProductDetails from './pages/ProductDetails';
-import CategoryList from './components/CategoryList';
 
 function App() {
   return (
@@ -14,7 +13,6 @@ function App() {
           <Route path="/product/:id" render={(props) => <ProductDetails {...props} />} />
           <Route path="/shopping-cart" component={ShoppingCart} />
           <Route exact path="/">
-            <CategoryList />
             <ProductList />
             <ShoppingCart />
           </Route>

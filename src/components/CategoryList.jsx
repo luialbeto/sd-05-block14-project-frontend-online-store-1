@@ -6,11 +6,8 @@ class CategoryList extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { 
-      categories: [],
-      categoryId: '',
-    };
-    this.handleCheck = this.handleCheck.bind(this);
+    this.state = { categories: [], categoryId: '', boxCheck: false };
+    this.resetCategory = this.resetCategory.bind(this);
   }
 
   componentDidMount() {
@@ -19,23 +16,33 @@ class CategoryList extends React.Component {
     });
   }
 
-  handleCheck(event) {
-    console.log(event.target.name)
-    this.setState({ categoryId: event.target.name })
+  resetCategory(event) {
+    const { categoryId, boxCheck } = this.state;
+    if (categoryId.length > 0 && boxCheck === true) {
+      this.setState({
+        categoryId: '',
+        boxCheck: !boxCheck
+      });
+    } else {
+      this.setState({
+        categoryId: event.target.name,
+        boxCheck: !boxCheck
+      })
+    }
   }
 
   render() {
-    const { categories, categoryId } = this.state
+    const { categories } = this.state
     return (
       <section className="categories-container">
         {categories.map((category) => (
           <form key={category.id}>
             <input
               type="checkbox"
-              name={category.name}
+              name={category.id}
               data-testid="category"
-              defaultChecked={categoryId}
-              onChange={this.handleCheck}
+              onChange={() => this.props.handleChange(this.state.categoryId)}
+              onClick={this.resetCategory}
             />
             <label htmlFor="categories-list">{category.name}</label>
           </form>
