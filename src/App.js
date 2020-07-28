@@ -12,6 +12,7 @@ function App() {
       <div className="App">
         <Switch>
           <Route path="/product/:id" render={(props) => <ProductDetails {...props} />} />
+          <Route path="/shopping-cart" component={ShoppingCart} />
           <Route exact path="/">
             <CategoryList />
             <ProductList />

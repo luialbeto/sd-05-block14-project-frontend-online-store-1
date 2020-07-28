@@ -2,6 +2,7 @@ import React from 'react';
 import SearchBar from '../components/SearchBar';
 import * as api from '../services/api';
 import ProductDisplay from '../components/ProductDisplay';
+import CartIcon from '../components/CartIcon';
 
 class ProductList extends React.Component {
   constructor(props) {
@@ -28,6 +29,7 @@ class ProductList extends React.Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </h1>
         <SearchBar onClick={this.handleClick} />
+        <CartIcon />
         <div>
           { sessionStorage.getItem('items') && JSON.parse(sessionStorage.getItem('items'))
           .map((item) => <ProductDisplay batatinha={item.id} product={item} />) }
