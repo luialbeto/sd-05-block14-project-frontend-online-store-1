@@ -10,7 +10,7 @@ class ProductDisplay extends React.Component {
         <h4>{title}</h4>
         <p>{id}</p>
         <p>{`R$ ${price}`}</p>
-        <Link to={`/product/${id}`}>VER DETALHES</Link>
+        <Link data-testid="product-detail-link" to={`/product/${id}`} >VER DETALHES</Link>
       </div>
     );
   }

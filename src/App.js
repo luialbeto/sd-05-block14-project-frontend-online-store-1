@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Switch>
-          <Route path="/product/:id" component={ProductDetails} />
+          <Route path="/product/:id" render={(props) => <ProductDetails {...props} />} />
           <Route exact path="/">
             <CategoryList />
             <ProductList />
