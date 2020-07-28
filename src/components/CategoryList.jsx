@@ -6,8 +6,8 @@ class CategoryList extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { categories: [], categoryId: '', boxCheck: false };
-    this.resetCategory = this.resetCategory.bind(this);
+    this.state = { categories: [], categoryId: '' };
+    // this.resetCategory = this.resetCategory.bind(this);
   }
 
   componentDidMount() {
@@ -16,20 +16,20 @@ class CategoryList extends React.Component {
     });
   }
 
-  resetCategory(event) {
-    const { categoryId, boxCheck } = this.state;
-    if (categoryId.length > 0 && boxCheck === true) {
-      this.setState({
-        categoryId: '',
-        boxCheck: !boxCheck
-      });
-    } else {
-      this.setState({
-        categoryId: event.target.name,
-        boxCheck: !boxCheck
-      })
-    }
-  }
+  // resetCategory(event) {
+  //   const { categoryId, boxCheck } = this.state;
+  //   if (categoryId.length > 0 && boxCheck === true) {
+  //     this.setState({
+  //       categoryId: '',
+  //       boxCheck: !boxCheck
+  //     });
+  //   } else {
+  //     this.setState({
+  //       categoryId: event.target.name,
+  //       boxCheck: !boxCheck
+  //     })
+  //   }
+  // }
 
   render() {
     const { categories } = this.state
@@ -41,8 +41,8 @@ class CategoryList extends React.Component {
               type="checkbox"
               name={category.id}
               data-testid="category"
-              onChange={() => this.props.handleChange(this.state.categoryId)}
-              onClick={this.resetCategory}
+              onChange={(event) => this.props.handleChange(event.target.name)}
+              // onClick={this.resetCategory}
             />
             <label htmlFor="categories-list">{category.name}</label>
           </form>
