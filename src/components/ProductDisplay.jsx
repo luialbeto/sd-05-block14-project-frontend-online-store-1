@@ -31,7 +31,12 @@ class ProductDisplay extends React.Component {
           buttonId={this.props.clickCartAdd(this.state.product)}
           data-testid="product-add-to-cart"
         /> */}
-        <button onClick={() => this.props.clickCartAdd(this.state.product)}>botão</button>
+        <button
+          onClick={() => this.props.clickCartAdd(this.state.product)}
+          data-testid="product-add-to-cart"
+        >
+          Adicionar ao carrinho
+        </button>
         <Link data-testid="product-detail-link" to={`/product/${id}`}>
           VER DETALHES
         </Link>
