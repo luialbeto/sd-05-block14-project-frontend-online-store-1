@@ -12,9 +12,17 @@ class ProductList extends React.Component {
     this.state = {
       categoryId: '',
       query: '',
+      boxCheck: false,
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentDidMount() {
+    api.getProductsFromCategoryAndQuery(this.state.categoryId, this.state.query)
+      .then((data) => {
+        sessionStorage.setItem('items', JSON.stringify(data.results));
+      });
   }
 
   async handleClick(input) {
@@ -26,13 +34,19 @@ class ProductList extends React.Component {
   }
 
   async handleChange(category) {
-    this.setState({ categoryId: category });
+    const { boxCheck } = this.state;
+    this.setState({ boxCheck: !boxCheck });
+    if (!boxCheck) {
+      this.setState({ categoryId: category });
+    } else {
+      this.setState({ categoryId: '' });
+    }
   }
 
   render() {
     return (
-     <section>
-        <CategoryList handleChange={this.handleChange}/>
+      <section>
+        <CategoryList handleChange={this.handleChange} />
         <section className="products-container">
           <h1 data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.

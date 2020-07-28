@@ -6,8 +6,7 @@ class CategoryList extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { categories: [], categoryId: '' };
-    // this.resetCategory = this.resetCategory.bind(this);
+    this.state = { categories: [] };
   }
 
   componentDidMount() {
@@ -16,23 +15,8 @@ class CategoryList extends React.Component {
     });
   }
 
-  // resetCategory(event) {
-  //   const { categoryId, boxCheck } = this.state;
-  //   if (categoryId.length > 0 && boxCheck === true) {
-  //     this.setState({
-  //       categoryId: '',
-  //       boxCheck: !boxCheck
-  //     });
-  //   } else {
-  //     this.setState({
-  //       categoryId: event.target.name,
-  //       boxCheck: !boxCheck
-  //     })
-  //   }
-  // }
-
   render() {
-    const { categories } = this.state
+    const { categories } = this.state;
     return (
       <section className="categories-container">
         {categories.map((category) => (
@@ -42,7 +26,6 @@ class CategoryList extends React.Component {
               name={category.id}
               data-testid="category"
               onChange={(event) => this.props.handleChange(event.target.name)}
-              // onClick={this.resetCategory}
             />
             <label htmlFor="categories-list">{category.name}</label>
           </form>
