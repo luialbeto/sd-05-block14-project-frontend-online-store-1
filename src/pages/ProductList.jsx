@@ -13,9 +13,12 @@ class ProductList extends React.Component {
       categoryId: '',
       query: '',
       boxCheck: false,
+      cartProduct: [],
+      count: 0,
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.transferToCart = this.transferToCart.bind(this);
   }
 
   componentDidMount() {
@@ -23,6 +26,7 @@ class ProductList extends React.Component {
       .then((data) => {
         sessionStorage.setItem('items', JSON.stringify(data.results));
       });
+      // this.setState({cartProduct: JSON.parse(localStorage.getItem('inCart'))})
   }
 
   async handleClick(input) {
@@ -42,6 +46,15 @@ class ProductList extends React.Component {
       this.setState({ categoryId: '' });
     }
   }
+  
+  async transferToCart(product) {
+    await this.setState({cartProduct: [...this.state.cartProduct, product] })
+    localStorage.setItem('inCart', JSON.stringify(this.state.cartProduct))
+      // localStorage.setItem('inCart', JSON.stringify(this.state.product))
+      // cartItem.push(JSON.parse(localStorage.getItem('inCart')))
+      // localStorage.setItem('inCart', JSON.stringify(cartItem))
+      console.log(this.state.cartProduct)
+    }
 
   render() {
     return (
@@ -55,7 +68,7 @@ class ProductList extends React.Component {
           <CartIcon />
           <div>
             { sessionStorage.getItem('items') && JSON.parse(sessionStorage.getItem('items'))
-            .map((item) => <ProductDisplay key={item.id} id={item.id} product={item} />) }
+            .map((item) => <ProductDisplay clickCartAdd={this.transferToCart} key={item.id} id={item.id} product={item} />) }
           </div>
         </section>
       </section>
