@@ -1,7 +1,9 @@
 import React from 'react';
+
 import SearchBar from '../components/SearchBar';
 import * as api from '../services/api';
 import ProductDisplay from '../components/ProductDisplay';
+import CategoryList from '../components/CategoryList';
 
 class ProductList extends React.Component {
   constructor(props) {
@@ -24,14 +26,17 @@ class ProductList extends React.Component {
   render() {
     return (
       <section className="products-container">
-        <h1 data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </h1>
-        <SearchBar onClick={this.handleClick} />
-        <div>
-          { sessionStorage.getItem('items') && JSON.parse(sessionStorage.getItem('items'))
-          .map((item) => <ProductDisplay batatinha={item.id} product={item} />) }
-        </div>
+        <CategoryList className="categories-container" />
+          <section>
+            <h1 data-testid="home-initial-message">
+              Digite algum termo de pesquisa ou escolha uma categoria.
+            </h1>
+            <SearchBar onClick={this.handleClick} />
+            <div>
+              { sessionStorage.getItem('items') && JSON.parse(sessionStorage.getItem('items'))
+              .map((item) => <ProductDisplay id={item.id} product={item} />) }
+            </div>
+        </section>
       </section>
     );
   }

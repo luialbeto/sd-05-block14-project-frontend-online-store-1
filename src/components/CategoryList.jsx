@@ -6,7 +6,11 @@ class CategoryList extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { categories: [] };
+    this.state = { 
+      categories: [],
+      categoryId: '',
+    };
+    this.handleCheck = this.handleCheck.bind(this);
   }
 
   componentDidMount() {
@@ -15,16 +19,23 @@ class CategoryList extends React.Component {
     });
   }
 
+  handleCheck(event) {
+    console.log(event.target.name)
+    this.setState({ categoryId: event.target.name })
+  }
+
   render() {
-    const allCategories = this.state.categories;
+    const { categories, categoryId } = this.state
     return (
       <section className="categories-container">
-        {allCategories.map((category) => (
+        {categories.map((category) => (
           <form key={category.id}>
             <input
               type="checkbox"
-              name="categories-list"
+              name={category.name}
               data-testid="category"
+              defaultChecked={categoryId}
+              onChange={this.handleCheck}
             />
             <label htmlFor="categories-list">{category.name}</label>
           </form>
