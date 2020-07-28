@@ -22,10 +22,10 @@
 .App-link {
   color: #61dafb;
 }
-
+/* 
 .products-container {
   display: flex;
-}
+} */
 
 .categories-container , .products-container , .cart-container {
   border: 1px solid black;
