@@ -1,5 +1,5 @@
 import React from 'react';
-import CartButton from './CartButton'
+import { Link } from 'react-router-dom';
 
 class ProductDisplay extends React.Component {
   constructor(props){
@@ -17,7 +17,7 @@ class ProductDisplay extends React.Component {
         <h4>{title}</h4>
         <p batata={id}>{id}</p>
         <p>{`R$ ${price}`}</p>
-        <CartButton buttonId={this.transferToCart}/>
+        <Link data-testid="product-detail-link" to={`/product/${id}`} >VER DETALHES</Link>
       </div>
     );
   }
