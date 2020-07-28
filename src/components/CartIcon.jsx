@@ -6,7 +6,7 @@ export default class CartIcon extends React.Component {
     return (
       <div>
         <Link data-testid="shopping-cart-button" to="/shopping-cart">
-          <img src="https://image.flaticon.com/icons/png/512/263/263142.png" alt="cart icon" style={{width: '30px'}}></img>
+          <img src="https://image.flaticon.com/icons/png/512/263/263142.png" alt="cart icon" style={{ width: '30px' }} />
         </Link>
       </div>
     );
