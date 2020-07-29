@@ -48,7 +48,6 @@ class ProductList extends React.Component {
     } else {
       this.setState({ categoryId: '' });
     }
-    // --------- GAMBETA ------------
     await api.getProductsFromCategoryAndQuery(!boxCheck ? category : '', this.state.query)
       .then((data) => {
         sessionStorage.setItem('items', JSON.stringify(data.results));
