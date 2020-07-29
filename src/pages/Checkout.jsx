@@ -90,7 +90,7 @@ export default class Checkout extends Component {
           type="text"
           onChange={(event) => this.checkoutEndereco('address', event.target.value)}>
         </input>
-        <button onClick={(click) => this.handleSubmit('click', click.event.target)}>
+          <button data-testid="checkout-products" onClick={(click) => this.handleSubmit('click', click.event.target)}>
           Finalize
         </button>
       </div>

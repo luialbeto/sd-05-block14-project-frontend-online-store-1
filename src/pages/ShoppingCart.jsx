@@ -5,17 +5,12 @@ import Checkout from './Checkout';
 class ShoppingCart extends React.Component {
     
   render() {
-    const { nome, email, endereço, cep, cpf, telefone } = this.props;
+    const { nome, email, endereco, cep, cpf, telefone } = this.props;
     return (
       <div>
         <Link data-testid="checkout-products" to="checkout" />
         <form>
-          {nome}
-          {email}
-          {telefone}
-          {endereco}
-          {cep}
-          {cpf}
+          {nome, email, telefone, endereco, cep, cpf}
         </form>
       </div>
     )
