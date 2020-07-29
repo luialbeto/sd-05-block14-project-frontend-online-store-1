@@ -76,7 +76,8 @@ class ProductList extends React.Component {
           <CartIcon />
           <div>
             { sessionStorage.getItem('items') && JSON.parse(sessionStorage.getItem('items'))
-              .map((item) => <ProductDisplay clickCartAdd={this.transferToCart} key={item.id} product={item} />) }
+              .map((item) => 
+              <ProductDisplay clickCartAdd={this.transferToCart} key={item.id} product={item} />) }
           </div>
         </section>
       </section>
