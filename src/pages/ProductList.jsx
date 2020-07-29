@@ -13,6 +13,7 @@ class ProductList extends React.Component {
       categoryId: '',
       query: '',
       boxCheck: false,
+      products: []
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -24,20 +25,21 @@ class ProductList extends React.Component {
         sessionStorage.setItem('items', JSON.stringify(data.results));
       });
   }
-
+  
   async handleClick(input) {
     await api.getProductsFromCategoryAndQuery(this.state.categoryId, input)
       .then((data) => {
         sessionStorage.setItem('items', JSON.stringify(data.results));
+        this.state.products = data.results;
       });
-    this.setState({ query: input });
+    await this.setState({ query: input });
   }
 
   async handleChange(category) {
     const { boxCheck } = this.state;
-    this.setState({ boxCheck: !boxCheck });
+    await this.setState({ categoryId: category });
     if (!boxCheck) {
-      this.setState({ categoryId: category });
+      this.setState({ boxCheck: !boxCheck });
     } else {
       this.setState({ categoryId: '' });
     }
