@@ -1,24 +1,11 @@
 import React from 'react';
-import * as api from '../services/api';
 
 class CategoryList extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { categories: [] };
-  }
-
-  componentDidMount() {
-    api.getCategories().then((category) => {
-      this.setState({ categories: category });
-    });
-  }
-
   render() {
-    const { categories } = this.state;
+    const { categories } = this.props;
     return (
       <section className="categories-container">
-        {categories.map((category) => (
+        { this.props.categories && categories.map((category) => (
           <form key={category.id}>
             <input
               type="checkbox"
