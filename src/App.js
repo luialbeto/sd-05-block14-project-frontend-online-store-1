@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 import ProductList from './pages/ProductList';
-import ShoppingCart from './pages/ShoppingCart';
 import ProductDetails from './pages/ProductDetails';
+import ShoppingCart from './pages/ShoppingCart';
 
 function App() {
   return (
@@ -14,7 +14,6 @@ function App() {
           <Route path="/shopping-cart" component={ShoppingCart} />
           <Route exact path="/">
             <ProductList />
-            <ShoppingCart />
           </Route>
         </Switch>
       </div>
