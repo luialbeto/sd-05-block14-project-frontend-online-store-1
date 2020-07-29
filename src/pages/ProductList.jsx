@@ -13,26 +13,31 @@ class ProductList extends React.Component {
       categoryId: '',
       query: '',
       boxCheck: false,
-      products: []
+      cartProduct: [],
+      count: 0,
+      categories: [],
+      productsList: '',
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.toCart = this.toCart.bind(this);
   }
 
   componentDidMount() {
-    api.getProductsFromCategoryAndQuery(this.state.categoryId, this.state.query)
-      .then((data) => {
-        sessionStorage.setItem('items', JSON.stringify(data.results));
-      });
+    api.getCategories().then((category) => {
+      this.setState({ categories: category });
+    });
   }
   
   async handleClick(input) {
     await api.getProductsFromCategoryAndQuery(this.state.categoryId, input)
       .then((data) => {
         sessionStorage.setItem('items', JSON.stringify(data.results));
-        this.state.products = data.results;
+        this.setState({
+          productsList: data.results,
+          query: input,
+        });
       });
-    await this.setState({ query: input });
   }
 
   async handleChange(category) {
@@ -43,12 +48,26 @@ class ProductList extends React.Component {
     } else {
       this.setState({ categoryId: '' });
     }
+    // --------- GAMBETA ------------
+    await api.getProductsFromCategoryAndQuery(!boxCheck ? category : '', this.state.query)
+      .then((data) => {
+        sessionStorage.setItem('items', JSON.stringify(data.results));
+        this.setState({ productsList: data.results });
+      });
+  }
+
+  async toCart(product) {
+    await this.setState({ cartProduct: [...this.state.cartProduct, product] });
+    localStorage.setItem('inCart', JSON.stringify(this.state.cartProduct));
+    // localStorage.setItem('inCart', JSON.stringify(this.state.product))
+    // cartItem.push(JSON.parse(localStorage.getItem('inCart')))
+    // localStorage.setItem('inCart', JSON.stringify(cartItem))
   }
 
   render() {
     return (
       <section>
-        <CategoryList handleChange={this.handleChange} />
+        <CategoryList categories={this.state.categories} handleChange={this.handleChange} />
         <section className="products-container">
           <h1 data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
@@ -57,7 +76,7 @@ class ProductList extends React.Component {
           <CartIcon />
           <div>
             { sessionStorage.getItem('items') && JSON.parse(sessionStorage.getItem('items'))
-            .map((item) => <ProductDisplay key={item.id} id={item.id} product={item} />) }
+              .map((i) => <ProductDisplay addCart={this.toCart} key={i.id} product={i} />) }
           </div>
         </section>
       </section>
