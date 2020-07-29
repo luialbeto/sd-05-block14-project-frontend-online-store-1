@@ -20,7 +20,7 @@ class ProductList extends React.Component {
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.transferToCart = this.transferToCart.bind(this);
+    this.toCart = this.toCart.bind(this);
   }
 
   componentDidMount() {
@@ -56,7 +56,7 @@ class ProductList extends React.Component {
       });
   }
 
-  async transferToCart(product) {
+  async toCart(product) {
     await this.setState({ cartProduct: [...this.state.cartProduct, product] });
     localStorage.setItem('inCart', JSON.stringify(this.state.cartProduct));
     // localStorage.setItem('inCart', JSON.stringify(this.state.product))
@@ -76,8 +76,7 @@ class ProductList extends React.Component {
           <CartIcon />
           <div>
             { sessionStorage.getItem('items') && JSON.parse(sessionStorage.getItem('items'))
-              .map((item) =>
-                <ProductDisplay clickCartAdd={this.transferToCart} key={item.id} product={item} />) }
+              .map((i) => <ProductDisplay addCart={this.toCart} key={i.id} product={i} />) }
           </div>
         </section>
       </section>
