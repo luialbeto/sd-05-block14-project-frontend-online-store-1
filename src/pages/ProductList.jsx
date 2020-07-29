@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ShoppingCart from '../pages/ShoppingCart';
-import SearchBar from '../components/SearchBar';
+
 import * as api from '../services/api';
+
+import SearchBar from '../components/SearchBar';
 import ProductDisplay from '../components/ProductDisplay';
-// import CartIcon from '../components/CartIcon';
 import CategoryList from '../components/CategoryList';
 
 class ProductList extends React.Component {

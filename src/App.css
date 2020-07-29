@@ -23,7 +23,7 @@
   color: #61dafb;
 }
 
-.products-container {
+.products-container, .button-quantity {
   display: flex;
 }
 

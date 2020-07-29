@@ -2,10 +2,6 @@ import React from 'react';
 import CartItem from '../components/CartItem';
 
 class ShoppingCart extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { counter: 0 };
-  }
   render() {
     return (
       <div>
@@ -15,7 +11,9 @@ class ShoppingCart extends React.Component {
         <div>
         {localStorage.getItem('inCart') &&
           JSON.parse(localStorage.getItem('inCart')).map((item) => (
+          <div>
             <CartItem key={item.id} product={item} />
+          </div>
           ))
         }
         </div>
