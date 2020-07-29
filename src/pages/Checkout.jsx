@@ -13,7 +13,7 @@ export default class Checkout extends Component {
       preco: '',
       quantidade: 0,
     }
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
     this.checkoutNome = this.checkoutNome.bind(this);
     this.checkoutCpf = this.checkoutCpf.bind(this);
     this.checkoutEmail = this.checkoutEmail.bind(this);
@@ -22,10 +22,10 @@ export default class Checkout extends Component {
     this.checkoutTelefone = this.checkoutTelefone.bind(this);
   }
   
-  handleSubmit() {
+  /* handleSubmit() {
     const { onSubmit } = this.props;
     onSubmit(this.state);
-  }
+  } */
   
   checkoutNome(nome, newValue1) {
     this.setState({ name: newValue1 });
@@ -90,7 +90,7 @@ export default class Checkout extends Component {
           type="text"
           onChange={(event) => this.checkoutEndereco('address', event.target.value)}>
         </input>
-          <button data-testid="checkout-products" onClick={(click) => this.handleSubmit('click', click.event.target)}>
+          <button type="button">
           Finalize
         </button>
       </div>

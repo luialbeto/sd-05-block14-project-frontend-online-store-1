@@ -8,7 +8,7 @@ class ShoppingCart extends React.Component {
     const { nome, email, endereco, cep, cpf, telefone } = this.props;
     return (
       <div>
-        <Link data-testid="checkout-products" to="checkout" />
+        <Link data-testid="checkout-products" to="/checkout">Texto</Link>
         <form>
           {nome, email, telefone, endereco, cep, cpf}
         </form>
