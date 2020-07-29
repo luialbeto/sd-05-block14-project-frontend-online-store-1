@@ -12,9 +12,9 @@ export default class CartItem extends Component {
         <p>{id}</p>
         <p>{`R$ ${price}`}</p>
         <Link data-testid="product-detail-link" to={`/product/${id}`}>
-          <p>quant</p>
           VER DETALHES
         </Link>
+        <p>quant</p>
       </div>
     );
   }

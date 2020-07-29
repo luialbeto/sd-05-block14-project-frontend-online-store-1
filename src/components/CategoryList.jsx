@@ -1,5 +1,4 @@
 import React from 'react';
-
 import * as api from '../services/api';
 
 class CategoryList extends React.Component {

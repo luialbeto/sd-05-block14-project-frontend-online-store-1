@@ -15,6 +15,8 @@ class ProductList extends React.Component {
       boxCheck: false,
       cartProduct: [],
       count: 0,
+      categories: [],
+      productsList: '', 
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -22,29 +24,37 @@ class ProductList extends React.Component {
   }
 
   componentDidMount() {
-    api.getProductsFromCategoryAndQuery(this.state.categoryId, this.state.query)
-      .then((data) => {
-        sessionStorage.setItem('items', JSON.stringify(data.results));
-      });
-      // this.setState({cartProduct: JSON.parse(localStorage.getItem('inCart'))})
+    api.getCategories().then((category) => {
+      this.setState({ categories: category });
+    });
   }
 
   async handleClick(input) {
     await api.getProductsFromCategoryAndQuery(this.state.categoryId, input)
       .then((data) => {
         sessionStorage.setItem('items', JSON.stringify(data.results));
+        this.setState({
+          productsList: data.results,
+          query: input,
+        });
       });
-    this.setState({ query: input });
+    
   }
 
   async handleChange(category) {
     const { boxCheck } = this.state;
     this.setState({ boxCheck: !boxCheck });
     if (!boxCheck) {
-      this.setState({ categoryId: category });
-    } else {
-      this.setState({ categoryId: '' });
-    }
+        this.setState({ categoryId: category });
+      } else {
+        this.setState({ categoryId: '' });
+      }
+    // --------- GAMBETA ------------
+    await api.getProductsFromCategoryAndQuery(this.state.categoryId, this.state.categoryId)
+      .then((data) => {
+        sessionStorage.setItem('items', JSON.stringify(data.results));
+        this.setState({ productsList: data.results });
+      });
   }
   
   async transferToCart(product) {
@@ -53,13 +63,13 @@ class ProductList extends React.Component {
       // localStorage.setItem('inCart', JSON.stringify(this.state.product))
       // cartItem.push(JSON.parse(localStorage.getItem('inCart')))
       // localStorage.setItem('inCart', JSON.stringify(cartItem))
-      console.log(this.state.cartProduct)
+      
     }
 
   render() {
     return (
       <section>
-        <CategoryList handleChange={this.handleChange} />
+        <CategoryList categories={this.state.category} handleChange={this.handleChange} />
         <section className="products-container">
           <h1 data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
