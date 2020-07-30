@@ -22,7 +22,7 @@ class App extends React.Component {
       cartSize: 0,
       categories: [],
       productsList: '',
-    }; 
+    };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.toCart = this.toCart.bind(this);
@@ -90,11 +90,11 @@ class App extends React.Component {
           <div>
             { sessionStorage.getItem('items') && JSON.parse(sessionStorage.getItem('items'))
               .map((item) =>
-              <ProductDisplay addCart={this.toCart} key={item.id} product={item} />) }
+                <ProductDisplay addCart={this.toCart} key={item.id} product={item} />) }
           </div>
         </section>
       </section>
-      );
+    );
   }
 
   render() {
