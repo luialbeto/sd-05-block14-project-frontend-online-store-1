@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext } from 'react';
 
 import * as api from '../services/api';
 
@@ -7,6 +7,8 @@ import ProductDisplay from '../components/ProductDisplay';
 import CategoryList from '../components/CategoryList';
 import CartIcon from '../components/CartIcon';
 // import ShoppingCart from './ShoppingCart';
+
+export const ProductListState = createContext();
 
 class ProductList extends React.Component {
   constructor(props) {
@@ -76,7 +78,8 @@ class ProductList extends React.Component {
 
   render() {
     return (
-      <section>
+      <ProductListState.Provider>
+        <section>
         <CategoryList categories={this.state.categories} handleChange={this.handleChange} />
         <section className="products-container">
           <h1 data-testid="home-initial-message">
@@ -92,6 +95,9 @@ class ProductList extends React.Component {
           {/* <ShoppingCart /> */}
         </section>
       </section>
+      {this.props.children}
+      </ProductListState.Provider>
+      
     );
   }
 }
