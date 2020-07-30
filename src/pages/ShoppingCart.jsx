@@ -5,20 +5,14 @@ import CartItem from '../components/CartItem';
 class ShoppingCart extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      cartinho: '',
-    }
-  }
-  
-  componentDidMount(props) {
-    this.setState({
-      cartinho: this.props.carrinho,
-    })
+    this.state = { cartinho: '' };
   }
 
-  
+  componentDidMount() {
+    this.setState({ cartinho: this.props.carrinho })
+  }
+
   render() {
-    console.log(this.state.carrinho)
     return (
       <div>
         {this.state.cartinho === '' && <section data-testid="shopping-cart-empty-message" className="cart-container">
