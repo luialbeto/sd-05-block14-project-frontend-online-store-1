@@ -3,82 +3,33 @@ import React, { Component } from 'react';
 export default class Checkout extends Component {
   constructor() {
     super();
-    this.state = {
-      nome: 'Nome completo',
-      email: 'Email',
-      cpf: 'CPF',
-      telefone: 'Telefone',
-      cep: 'CEP',
-      endereco: 'Endereço',
-      preco: '',
-      quantidade: 0,
-    };
-    // this.handleSubmit = this.handleSubmit.bind(this);
-    this.checkoutNome = this.checkoutNome.bind(this);
-    this.checkoutCpf = this.checkoutCpf.bind(this);
-    this.checkoutEmail = this.checkoutEmail.bind(this);
-    this.checkoutEndereco = this.checkoutEndereco.bind(this);
-    this.checkoutCep = this.checkoutCep.bind(this);
-    this.checkoutTelefone = this.checkoutTelefone.bind(this);
-  }
-
-  /* handleSubmit() {
-    const { onSubmit } = this.props;
-    onSubmit(this.state);
-  } */
-
-  checkoutNome(nome, newValue1) {
-    this.setState({ name: newValue1 });
-  }
-
-  checkoutEmail(email, newValue2) {
-    this.setState({ email: newValue2 });
-  }
-
-  checkoutCpf(cpf, newValue3) {
-    this.setState({ cpf: newValue3 });
-  }
-
-  checkoutTelefone(telefone, newValue4) {
-    this.setState({ telefone: newValue4 });
-  }
-
-  checkoutCep(cep, newValue5) {
-    this.setState({ cep: newValue5 });
-  }
-
-  checkoutEndereco(endereço, newValue6) {
-    this.setState({ endereco: newValue6 });
+    this.state = { cartProducts: localStorage.getItem('inCart') };
   }
 
   render() {
     return (
       <div>
+        {JSON.parse(localStorage.getItem('inCart')).map((product) => (
+          <div key={product.id}>{product.title}</div>))}
         <input
-          data-testid="checkout-fullname" placeholder="Nome Completo"
-          type="text" onChange={(event) => this.checkoutNome('nome', event.target.value)}
+          data-testid="checkout-fullname" placeholder="Nome Completo" type="text"
         />
         <input
-          data-testid="checkout-email" placeholder="email"
-          type="email" onChange={(event) => this.checkoutNome('email', event.target.value)}
+          data-testid="checkout-email" placeholder="email" type="email"
         />
         <input
-          data-testid="checkout-cpf" placeholder="CPF"
-          type="number" onChange={(event) => this.checkoutCpf('cpf', event.target.value)}
+          data-testid="checkout-cpf" placeholder="CPF" type="number"
         />
         <input
-          data-testid="checkout-phone" placeholder="telefone"
-          type="number" onChange={(event) => this.checkoutTelefone('telefone', event.target.value)}
+          data-testid="checkout-phone" placeholder="telefone" type="number"
         />
         <input
-          data-testid="checkout-cep" placeholder="CEP"
-          type="number" onChange={(event) => this.checkoutCep('cep', event.target.value)}
+          data-testid="checkout-cep" placeholder="CEP" type="number"
         />
         <input
-          data-testid="checkout-address" placeholder="endereço"
-          type="text" onChange={(event) => this.checkoutEndereco('address', event.target.value)}
+          data-testid="checkout-address" placeholder="endereço" type="text"
         />
-        <button type="button">Finalize</button>
+        <button type="button">Finalizar Compra</button>
       </div>
     );
   }

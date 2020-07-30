@@ -4,6 +4,7 @@ import './App.css';
 import ProductList from './pages/ProductList';
 import ProductDetails from './pages/ProductDetails';
 import ShoppingCart from './pages/ShoppingCart';
+import Checkout from './pages/Checkout';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route exact path="/">
             <ProductList />
           </Route>
+          <Route path="/checkout" render={(props) => <Checkout {...props} />} />
         </Switch>
       </div>
     </BrowserRouter>

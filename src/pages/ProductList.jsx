@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import * as api from '../services/api';
 
 import SearchBar from '../components/SearchBar';
 import ProductDisplay from '../components/ProductDisplay';
 import CategoryList from '../components/CategoryList';
+import CartIcon from '../components/CartIcon';
+// import ShoppingCart from './ShoppingCart';
 
 class ProductList extends React.Component {
   constructor(props) {
@@ -15,13 +16,14 @@ class ProductList extends React.Component {
       query: '',
       boxCheck: false,
       cartProducts: (localStorage.getItem('inCartAfterLoading')) ? JSON.parse(localStorage.getItem('inCartAfterLoading')) : [],
-      count: 0,
+      cartSize: 0,
       categories: [],
       productsList: '',
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.toCart = this.toCart.bind(this);
+    this.getCartSize = this.getCartSize.bind(this);
   }
 
   componentDidMount() {
@@ -32,6 +34,11 @@ class ProductList extends React.Component {
     localStorage.getItem('inCart') :
     [],
     );
+  }
+
+  getCartSize() {
+    const { cartProducts } = this.state;
+    this.setState({ cartSize: cartProducts.length });
   }
 
   async handleClick(input) {
@@ -61,9 +68,10 @@ class ProductList extends React.Component {
   }
 
   async toCart(product) {
-    console.log(this.state.cartProducts);
-    await this.setState({ cartProducts: [...this.state.cartProducts, product] });
+    const { cartProducts } = this.state;
+    await this.setState({ cartProducts: [...cartProducts, product] });
     localStorage.setItem('inCart', JSON.stringify(this.state.cartProducts));
+    this.getCartSize();
   }
 
   render() {
@@ -75,15 +83,11 @@ class ProductList extends React.Component {
             Digite algum termo de pesquisa ou escolha uma categoria.
           </h1>
           <SearchBar onClick={this.handleClick} />
-          {/* <CartIcon /> */}
-          <div>
-            <Link data-testid="shopping-cart-button" to="/shopping-cart">
-              <img src="https://image.flaticon.com/icons/png/512/263/263142.png" alt="cart icon" style={{ width: '30px' }} />
-            </Link>
-          </div>
+          <CartIcon cartSize={this.state.cartSize} />
           <div>
             { sessionStorage.getItem('items') && JSON.parse(sessionStorage.getItem('items'))
-              .map((i) => <ProductDisplay addCart={this.toCart} key={i.id} product={i} />) }
+              .map((item) =>
+                <ProductDisplay addCart={this.toCart} key={item.id} product={item} />) }
           </div>
           {/* <ShoppingCart /> */}
         </section>
