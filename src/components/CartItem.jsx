@@ -7,9 +7,9 @@ export default class CartItem extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { counter: 1 }
-     this.addQuantity = this.addQuantity.bind(this);
-     this.subtractQuantity = this.subtractQuantity.bind(this);
+    this.state = { counter: 1 };
+    this.addQuantity = this.addQuantity.bind(this);
+    this.subtractQuantity = this.subtractQuantity.bind(this);
   }
 
   addQuantity() {
@@ -33,15 +33,15 @@ export default class CartItem extends Component {
           <p data-testid="shopping-cart-product-name">{title}</p>
           <p>{id}</p>
           <p>{`R$ ${price * this.state.counter}`}</p>
-          <Link data-testid="product-detail-link" to={`/product/$ {id}`}>
+          <Link data-testid="product-detail-link" to={`/product/${id}`}>
             VER DETALHES
           </Link>
         </div>
         <CartButtonQuantity
-              addQuantity={this.addQuantity}
-              subtractQuantity={this.subtractQuantity}
-              counter={this.state.counter}           
-            />
+          addQuantity={this.addQuantity}
+          subtractQuantity={this.subtractQuantity}
+          counter={this.state.counter}
+        />
       </div>
     );
   }

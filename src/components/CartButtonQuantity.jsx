@@ -7,7 +7,7 @@ export default function CartButton(props) {
         onClick={props.subtractQuantity}
         data-testid="shopping-cart-product-quantity"
       >-</button>
-      <h4 data-testid="shopping-cart-product-quantity">{props.counter}</h4>
+      <h4>{props.counter}</h4>
       <button
         onClick={props.addQuantity}
         data-testid="shopping-cart-product-quantity"

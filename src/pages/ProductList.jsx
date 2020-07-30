@@ -30,10 +30,10 @@ class ProductList extends React.Component {
     });
     localStorage.setItem('inCartAfterLoading', (localStorage.getItem('inCart')) ?
     localStorage.getItem('inCart') :
-    []
+    [],
     );
   }
-  
+
   async handleClick(input) {
     await api.getProductsFromCategoryAndQuery(this.state.categoryId, input)
       .then((data) => {
@@ -61,9 +61,9 @@ class ProductList extends React.Component {
   }
 
   async toCart(product) {
-    console.log(this.state.cartProducts)
+    console.log(this.state.cartProducts);
     await this.setState({ cartProducts: [...this.state.cartProducts, product] });
-    localStorage.setItem('inCart', JSON.stringify(this.state.cartProducts))
+    localStorage.setItem('inCart', JSON.stringify(this.state.cartProducts));
   }
 
   render() {
@@ -78,7 +78,7 @@ class ProductList extends React.Component {
           {/* <CartIcon /> */}
           <div>
             <Link data-testid="shopping-cart-button" to="/shopping-cart">
-            <img src="https://image.flaticon.com/icons/png/512/263/263142.png" alt="cart icon" style={{ width: '30px' }} />
+              <img src="https://image.flaticon.com/icons/png/512/263/263142.png" alt="cart icon" style={{ width: '30px' }} />
             </Link>
           </div>
           <div>

@@ -12,7 +12,7 @@ class ProductDisplay extends React.Component {
     return (
       <div data-testid="product">
         <img src={thumbnail} alt={title} />
-        <h4>{title}</h4>
+        <h4 data-testid="shopping-cart-product-name">{title}</h4>
         <p>{id}</p>
         <p>{`R$ ${price}`}</p>
         <button

@@ -8,7 +8,7 @@ class ProductDetails extends React.Component {
       <div>
         <div data-testid="product-detail-name">
           <img src={product.thumbnail} alt={product.title} />
-          <h1>{product.title}</h1>
+          <h1 data-testid="product-detail-add-to-cart">{product.title}</h1>
           <p>{product.id}</p>
         </div>
         <form>

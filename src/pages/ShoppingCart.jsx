@@ -9,11 +9,11 @@ class ShoppingCart extends React.Component {
           Seu carrinho está vazio
         </section>}
         <div>
-        {localStorage.getItem('inCart') &&
+          {localStorage.getItem('inCart') &&
           JSON.parse(localStorage.getItem('inCart')).map((item) => (
-          <div>
-            <CartItem key={item.id} product={item} />
-          </div>
+            <div>
+              <CartItem key={item.id} product={item} />
+            </div>
           ))
         }
         </div>
