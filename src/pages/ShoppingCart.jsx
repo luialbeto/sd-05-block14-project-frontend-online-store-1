@@ -5,11 +5,7 @@ import CartItem from '../components/CartItem';
 class ShoppingCart extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { cartinho: '' };
-  }
-
-  componentDidMount() {
-    this.setState({ cartinho: this.props.carrinho })
+    this.state = { cartinho: this.props.carrinho };
   }
 
   render() {
